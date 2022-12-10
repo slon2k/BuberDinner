@@ -1,4 +1,4 @@
-namespace BuberDinner.Contracts
+namespace BuberDinner.Application.Services.Authentication
 {
     public record RegisterRequest(
         string firstName,
@@ -18,5 +18,5 @@ namespace BuberDinner.Contracts
         string lastName,
         string email,
         string token
-        );      
+        );  
 }
