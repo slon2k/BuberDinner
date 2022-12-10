@@ -1,13 +1,13 @@
-using BuberDinner.Application.Services.Authentication;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using BuberDinner.Application;
+using BuberDinner.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services
+    .AddApplication()
+    .AddInfrastructure();
 
 builder.Services.AddEndpointsApiExplorer();
 
