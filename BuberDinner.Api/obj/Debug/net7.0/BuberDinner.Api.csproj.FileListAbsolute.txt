@@ -10,6 +10,14 @@ C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\Microsoft.OpenApi.
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Application.dll
+C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Contracts.dll
+C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Domain.dll
+C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Infrastructure.dll
+C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Contracts.pdb
+C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Application.pdb
+C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Infrastructure.pdb
+C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Domain.pdb
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\obj\Debug\net7.0\BuberDinner.Api.csproj.AssemblyReference.cache
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\obj\Debug\net7.0\BuberDinner.Api.GeneratedMSBuildEditorConfig.editorconfig
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\obj\Debug\net7.0\BuberDinner.Api.AssemblyInfoInputs.cache
@@ -31,11 +39,3 @@ C:\Projects\Demo\BuberDinner\BuberDinner.Api\obj\Debug\net7.0\refint\BuberDinner
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\obj\Debug\net7.0\BuberDinner.Api.pdb
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\obj\Debug\net7.0\BuberDinner.Api.genruntimeconfig.cache
 C:\Projects\Demo\BuberDinner\BuberDinner.Api\obj\Debug\net7.0\ref\BuberDinner.Api.dll
-C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Application.dll
-C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Contracts.dll
-C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Domain.dll
-C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Infrastructure.dll
-C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Contracts.pdb
-C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Application.pdb
-C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Infrastructure.pdb
-C:\Projects\Demo\BuberDinner\BuberDinner.Api\bin\Debug\net7.0\BuberDinner.Domain.pdb

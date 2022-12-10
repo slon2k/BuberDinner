@@ -1,14 +1,16 @@
 @host = http://localhost:5056/api/auth
+@pass = Hedwig123
 
+### Login
 POST {{host}}/login
 Content-Type: application/json
 
 {
     "email": "harry.potter@hogwarts.com",
-    "password": "Hedwig123"
+    "password": "{{pass}}"
 }
 
-###
+### Register
 POST {{host}}/register
 Content-Type: application/json
 
@@ -16,5 +18,5 @@ Content-Type: application/json
     "firstName": "Harry",
     "lastName": "Potter",
     "email": "harry.potter@hogwarts.com",
-    "password": "Hedwig123"
+    "password": "{{pass}}"
 }
