@@ -1,5 +1,7 @@
-using BuberDinner.Application.Services.Authentication;
-using ErrorOr;
+using BuberDinner.Application.Authentication;
+using BuberDinner.Application.Authentication.Commands;
+using BuberDinner.Application.Authentication.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.Api.Controllers
@@ -7,17 +9,17 @@ namespace BuberDinner.Api.Controllers
     [Route("api/auth")]
     public class AuthenticationController : ApiControllerBase
     {
-        private readonly IAuthenticationService authenticationService;
+        private readonly IMediator mediator;
 
-        public AuthenticationController(IAuthenticationService authenticationService)
+        public AuthenticationController(IMediator mediator)
         {
-            this.authenticationService = authenticationService;
+            this.mediator = mediator;
         }
 
         [HttpPost("register")]
-        public IActionResult Register(Contracts.RegisterRequest request)
+        public async Task<IActionResult> Register(Contracts.RegisterRequest request)
         {
-            var result = authenticationService.Register(MapRegisterRequest(request));
+            var result = await mediator.Send(MapRegisterCommand(request));
 
             return result.Match(
                 result => Ok(MapAuthResponse(result)),
@@ -25,11 +27,11 @@ namespace BuberDinner.Api.Controllers
         }        
         
         [HttpPost("login")]
-        public IActionResult Login(Contracts.LoginRequest request)
+        public async Task<IActionResult> Login(Contracts.LoginRequest request)
         {
-            var result = authenticationService.Login(new LoginRequest(
-                email: request.email,
-                password: request.password
+            var result = await mediator.Send(new LoginQuery(
+                Email: request.email,
+                Password: request.password
             ));
 
             return result.Match(
@@ -39,18 +41,18 @@ namespace BuberDinner.Api.Controllers
         }
 
         private static Contracts.AuthResponse MapAuthResponse(AuthResponse response) => new(
-            id: response.id,
-            firstName: response.firstName,
-            lastName: response.lastName,
-            email: response.email,
-            token: response.token
+            id: response.Id,
+            firstName: response.FirstName,
+            lastName: response.LastName,
+            email: response.Email,
+            token: response.Token
         );
 
-        private static RegisterRequest MapRegisterRequest(Contracts.RegisterRequest request) => new(
-            firstName: request.firstName,
-            lastName: request.lastName,
-            email: request.email,
-            password: request.password
+        private static RegisterCommand MapRegisterCommand(Contracts.RegisterRequest request) => new(
+            FirstName: request.firstName,
+            LastName: request.lastName,
+            Email: request.email,
+            Password: request.password
         );
     }
 }
