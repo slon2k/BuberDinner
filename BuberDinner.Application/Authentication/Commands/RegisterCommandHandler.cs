@@ -6,7 +6,7 @@ using MediatR;
 
 namespace BuberDinner.Application.Authentication.Commands
 {
-    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthResponse>>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
     {
         private readonly IJwtGenerator jwtGenerator;
 
@@ -18,7 +18,7 @@ namespace BuberDinner.Application.Authentication.Commands
             this.userRepository = userRepository;
         }
 
-        public async Task<ErrorOr<AuthResponse>> Handle(RegisterCommand command, CancellationToken cancellationToken)
+        public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
             if (userRepository.GetByEmail(command.Email) is not null)
             {
@@ -37,7 +37,7 @@ namespace BuberDinner.Application.Authentication.Commands
 
             var token = jwtGenerator.GenerateToken(user);
 
-            return new AuthResponse(
+            return new AuthenticationResult(
                 Id: user.Id,
                 FirstName: command.FirstName,
                 LastName: command.LastName,

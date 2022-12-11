@@ -8,5 +8,5 @@ namespace BuberDinner.Application.Authentication.Commands
         string LastName,
         string Email,
         string Password
-        ) : IRequest<ErrorOr<AuthResponse>>;
+        ) : IRequest<ErrorOr<AuthenticationResult>>;
 }
