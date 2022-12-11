@@ -1,5 +1,4 @@
-﻿using BuberDinner.Application.Common.Authentication;
-using BuberDinner.Application.Common.Persistence;
+﻿using BuberDinner.Application.Interfaces;
 using BuberDinner.Domain.Entities;
 using BuberDinner.Domain.Errors;
 using ErrorOr;
