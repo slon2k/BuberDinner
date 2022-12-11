@@ -1,6 +1,8 @@
 using BuberDinner.Application.Common.Authentication;
 using BuberDinner.Application.Common.Persistence;
 using BuberDinner.Domain.Entities;
+using BuberDinner.Domain.Errors;
+using ErrorOr;
 
 namespace BuberDinner.Application.Services.Authentication
 {
@@ -16,18 +18,16 @@ namespace BuberDinner.Application.Services.Authentication
             this.userRepository = userRepository;
         }
 
-        public AuthResponse Login(LoginRequest request)
+        public ErrorOr<AuthResponse> Login(LoginRequest request)
         {
-            var user = userRepository.GetByEmail(request.email);
-
-            if (user is null)
+            if (userRepository.GetByEmail(request.email) is not User user)
             {
-                throw new Exception("Invalid credentials");
+                return Errors.Authentication.InvalidCredentials;
             }
 
             if (user.Password != request.password)
             {
-                throw new Exception("Invalid credentials");
+                return Errors.Authentication.InvalidCredentials;
             }
 
             var token = jwtGenerator.GenerateToken(user);
@@ -41,8 +41,13 @@ namespace BuberDinner.Application.Services.Authentication
             );
         }
 
-        public AuthResponse Register(RegisterRequest request)
+        public ErrorOr<AuthResponse> Register(RegisterRequest request)
         {
+            if (userRepository.GetByEmail(request.email) is not null)
+            {
+                return Errors.User.DuplicateEmail;
+            }
+
             var user = new User 
             {
                 FirstName= request.firstName,

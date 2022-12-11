@@ -1,4 +1,5 @@
 using BuberDinner.Application.Services.Authentication;
+using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.Api.Controllers
@@ -17,20 +18,11 @@ namespace BuberDinner.Api.Controllers
         [HttpPost("register")]
         public IActionResult Register(Contracts.RegisterRequest request)
         {
-            var result = authenticationService.Register(new RegisterRequest(
-                firstName:  request.firstName,
-                lastName: request.lastName,
-                email: request.email,
-                password: request.password
-            ));
+            var result = authenticationService.Register(MapRegisterRequest(request));
 
-            return Ok(new Contracts.AuthResponse(
-                id: result.id,
-                firstName:  result.firstName,
-                lastName: result.lastName,
-                email: result.email,
-                token: result.token                
-            ));
+            return result.Match(
+                res => Ok(MapAuthResponse(res)),
+                error => Problem(statusCode: StatusCodes.Status409Conflict, title: error[0].Description));
         }        
         
         [HttpPost("login")]
@@ -41,13 +33,25 @@ namespace BuberDinner.Api.Controllers
                 password: request.password
             ));
 
-            return Ok(new Contracts.AuthResponse(
-                id: result.id,
-                firstName:  result.firstName,
-                lastName: result.lastName,
-                email: result.email,
-                token: result.token                
-            ));
+            return result.Match(
+                result => Ok(MapAuthResponse(result)),
+                error => Problem(statusCode: StatusCodes.Status400BadRequest, title: error[0].Description));
+
         }
+
+        private static Contracts.AuthResponse MapAuthResponse(AuthResponse response) => new(
+            id: response.id,
+            firstName: response.firstName,
+            lastName: response.lastName,
+            email: response.email,
+            token: response.token
+        );
+
+        private static RegisterRequest MapRegisterRequest(Contracts.RegisterRequest request) => new(
+            firstName: request.firstName,
+            lastName: request.lastName,
+            email: request.email,
+            password: request.password
+        );
     }
 }
