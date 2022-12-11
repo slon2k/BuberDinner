@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.Api.Controllers
 {
-    [ApiController]
     [Route("api/auth")]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : ApiControllerBase
     {
         private readonly IAuthenticationService authenticationService;
 
@@ -21,8 +20,8 @@ namespace BuberDinner.Api.Controllers
             var result = authenticationService.Register(MapRegisterRequest(request));
 
             return result.Match(
-                res => Ok(MapAuthResponse(res)),
-                error => Problem(statusCode: StatusCodes.Status409Conflict, title: error[0].Description));
+                result => Ok(MapAuthResponse(result)),
+                errors => Problem(errors));
         }        
         
         [HttpPost("login")]
@@ -35,7 +34,7 @@ namespace BuberDinner.Api.Controllers
 
             return result.Match(
                 result => Ok(MapAuthResponse(result)),
-                error => Problem(statusCode: StatusCodes.Status400BadRequest, title: error[0].Description));
+                errors => Problem(errors));
 
         }
 
