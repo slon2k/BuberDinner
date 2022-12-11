@@ -20,6 +20,8 @@ namespace BuberDinner.Application.Authentication.Commands
 
         public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
+            await Task.CompletedTask;
+
             if (userRepository.GetByEmail(command.Email) is not null)
             {
                 return Errors.User.DuplicateEmail;
