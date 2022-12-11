@@ -1,4 +1,6 @@
 using BuberDinner.Application.Common.Authentication;
+using BuberDinner.Application.Common.Persistence;
+using BuberDinner.Domain.Entities;
 
 namespace BuberDinner.Application.Services.Authentication
 {
@@ -6,34 +8,55 @@ namespace BuberDinner.Application.Services.Authentication
     {
         private readonly IJwtGenerator jwtGenerator;
 
-        public AuthenticationService(IJwtGenerator jwtGenerator)
+        private readonly IUserRepository userRepository;
+
+        public AuthenticationService(IJwtGenerator jwtGenerator, IUserRepository userRepository)
         {
             this.jwtGenerator = jwtGenerator;
+            this.userRepository = userRepository;
         }
 
         public AuthResponse Login(LoginRequest request)
         {
-            var id = Guid.NewGuid();
+            var user = userRepository.GetByEmail(request.email);
 
-            var token = jwtGenerator.GenerateToken(id, request.email, request.email);
+            if (user is null)
+            {
+                throw new Exception("Invalid credentials");
+            }
+
+            if (user.Password != request.password)
+            {
+                throw new Exception("Invalid credentials");
+            }
+
+            var token = jwtGenerator.GenerateToken(user);
             
             return new AuthResponse(
-                id: Guid.NewGuid(),
-                firstName: request.email,
-                lastName: request.email,
-                email: request.email,
+                id: user.Id,
+                firstName: user.FirstName,
+                lastName: user.LastName,
+                email: user.Email,
                 token: token
             );
         }
 
         public AuthResponse Register(RegisterRequest request)
         {
-            var id = Guid.NewGuid();
+            var user = new User 
+            {
+                FirstName= request.firstName,
+                LastName= request.lastName,
+                Email = request.email,
+                Password= request.password
+            };
+
+            userRepository.Add(user);
             
-            var token = jwtGenerator.GenerateToken(id, request.firstName, request.lastName);
+            var token = jwtGenerator.GenerateToken(user);
 
             return new AuthResponse(
-                id: id,
+                id: user.Id,
                 firstName: request.firstName,
                 lastName: request.lastName,
                 email: request.email,
