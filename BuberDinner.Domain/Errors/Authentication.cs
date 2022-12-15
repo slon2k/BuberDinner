@@ -6,8 +6,9 @@ namespace BuberDinner.Domain.Errors
     {
         public class Authentication
         {
-            public static Error InvalidCredentials => Error.Validation(
-                code: "Authentication.DuplicateEmail",
+            public static Error InvalidCredentials => Error.Custom(
+                type: 401,
+                code: "Authentication.InvalidCredentials",
                 description: "Invalid Credentials");
         }
     }

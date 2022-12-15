@@ -21,5 +21,16 @@ Content-Type: application/json
     "password": "{{pass}}"
 }
 
+### Register Validation
+POST {{host}}/register
+Content-Type: application/json
+
+{
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "password": ""
+}
+
 ###
 {"id":"e2511fb8-02f8-4e1c-948c-ec132d78db1d","firstName":"Harry","lastName":"Potter","email":"harry.potter@hogwarts.com","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMjUxMWZiOC0wMmY4LTRlMWMtOTQ4Yy1lYzEzMmQ3OGRiMWQiLCJnaXZlbl9uYW1lIjoiSGFycnkiLCJmYW1pbHlfbmFtZSI6IlBvdHRlciIsImp0aSI6ImM3ZjYyZDkyLWExN2YtNGJkMy04NWE0LTAxM2Y2YzY4MmJkMiIsImV4cCI6MTY3MDgxODE2NCwiaXNzIjoiQnViYmVyRGlubmVyIiwiYXVkIjoiQnViYmVyRGlubmVyIn0.6mSE5CIKMWknmeYRcMbFfyCX9GoTBns8YUPrzRemUBw"}
