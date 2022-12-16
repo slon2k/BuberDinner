@@ -1,0 +1,6 @@
+@host = http://localhost:5056/api/dinner
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlOGZmNzUxNy0yZTFkLTQ0YWQtYjU3NC0yZDVkNDI5MzIzZmIiLCJnaXZlbl9uYW1lIjoiSGFycnkiLCJmYW1pbHlfbmFtZSI6IlBvdHRlciIsImp0aSI6IjAwNmE5YTEwLTRmYzQtNGRjYi04ZGZjLTMzNTI3ZmI2MjBmMCIsImV4cCI6MTY3MTc5NDA1MCwiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.P6r50t_7EjIq0vZqw2b-vz54NRU0D2nSKD3r0ugaZdE
+
+### Get Dinners
+GET {{host}}
+Authorization: Bearer {{token}}
