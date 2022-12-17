@@ -15,7 +15,7 @@ namespace BuberDinner.Domain.Menu
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return Value; 
+            yield return Value;
         }
     }
 }

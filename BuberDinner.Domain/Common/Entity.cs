@@ -1,6 +1,4 @@
-﻿using BuberDinner.Domain.Menu;
-
-namespace BuberDinner.Domain.Common
+﻿namespace BuberDinner.Domain.Common
 {
     public abstract class Entity<TId> : IEquatable<Entity<TId>> where TId : notnull 
     {

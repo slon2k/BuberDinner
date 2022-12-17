@@ -1,7 +1,6 @@
 ﻿using BuberDinner.Domain.Common;
 
 namespace BuberDinner.Domain.Menu
-{
     public sealed class MenuId : ValueObject
     {
         public Guid Value { get; }
