@@ -1,7 +1,47 @@
-@hostId = {{$guid}}
+@hostId = b776dbb9-6389-4aac-b34b-cb52f40a0df1
 @host = http://localhost:5056/api/host
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlOGZmNzUxNy0yZTFkLTQ0YWQtYjU3NC0yZDVkNDI5MzIzZmIiLCJnaXZlbl9uYW1lIjoiSGFycnkiLCJmYW1pbHlfbmFtZSI6IlBvdHRlciIsImp0aSI6IjAwNmE5YTEwLTRmYzQtNGRjYi04ZGZjLTMzNTI3ZmI2MjBmMCIsImV4cCI6MTY3MTc5NDA1MCwiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.P6r50t_7EjIq0vZqw2b-vz54NRU0D2nSKD3r0ugaZdE
 
 ### Get Menus
 GET {{host}}/{{hostId}}/menus
 Authorization: Bearer {{token}}
+
+### Create Menus
+POST {{host}}/{{hostId}}/menus
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "menu1",
+    "description": "menu1 description",
+    "sections": [
+        {
+            "name": "section1",
+            "description": "section1 description",
+            "items": [
+                {
+                    "name": "item1",
+                    "description": "item1 description"                    
+                },
+                {
+                    "name": "item2",
+                    "description": "item2 description"                   
+                }           
+            ]          
+        },
+        {
+            "name": "section2",
+            "description": "section2 description",
+            "items": [
+                {
+                    "name": "item3",
+                    "description": "item3 description"                    
+                },
+                {
+                    "name": "item4",
+                    "description": "item4 description"                   
+                }          
+            ]          
+        }
+    ]
+}
