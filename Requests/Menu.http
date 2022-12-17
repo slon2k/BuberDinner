@@ -6,7 +6,7 @@
 GET {{host}}/{{hostId}}/menus
 Authorization: Bearer {{token}}
 
-### Create Menus
+### Create Menu
 POST {{host}}/{{hostId}}/menus
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -41,6 +41,32 @@ Content-Type: application/json
                     "name": "item4",
                     "description": "item4 description"                   
                 }          
+            ]          
+        }
+    ]
+}
+
+### Create Menu Validation check
+POST {{host}}/{{hostId}}/menus
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "",
+    "description": "",
+    "sections": [
+        {
+            "name": "section1",
+            "description": "section1 description",
+            "items": [
+                {
+                    "name": "item1",
+                    "description": "item1 description"                    
+                },
+                {
+                    "name": "item2",
+                    "description": "item2 description"                   
+                }           
             ]          
         }
     ]
