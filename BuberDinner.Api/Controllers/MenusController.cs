@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Menu.Commands;
+using BuberDinner.Application.Menu.Queries;
 using BuberDinner.Contracts;
 using MapsterMapper;
 using MediatR;
@@ -19,9 +20,13 @@ namespace BuberDinner.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetMenus(Guid hostId)
+        public async Task<IActionResult> GetMenusAsync(Guid hostId)
         {
-            return Ok(hostId);
+            var result = await mediator.Send(new GetMenusQuery(hostId.ToString()));
+            
+            return result.Match(
+                result => Ok(mapper.Map<List<MenuResponse>>(result)),
+                errors => Problem(errors));
         }
 
         [HttpPost]

@@ -7,5 +7,7 @@ namespace BuberDinner.Application.Interfaces.Persistence
         void Add(MenuEntity menu);
 
         IEnumerable<MenuEntity> GetForHost(string hostId);
+
+        MenuEntity? GetById(Guid id);
     }
 }

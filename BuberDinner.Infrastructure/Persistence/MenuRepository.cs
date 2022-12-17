@@ -12,9 +12,14 @@ namespace BuberDinner.Infrastructure.Persistence
             menus.Add(menu);
         }
 
+        public MenuEntity? GetById(Guid id)
+        {
+            return menus.FirstOrDefault(m => m.Id.Value == id);
+        }
+
         public IEnumerable<MenuEntity> GetForHost(string hostId)
         {
-            return menus.Where(m => m.HostId.Equals(hostId));
+            return menus.Where(m => m.HostId.ToString().Equals(hostId));
         }
     }
 }
