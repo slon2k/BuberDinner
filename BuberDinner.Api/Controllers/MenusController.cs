@@ -19,18 +19,18 @@ namespace BuberDinner.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetMenus(string hostId)
+        public IActionResult GetMenus(Guid hostId)
         {
             return Ok(hostId);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMenuAsync(CreateMenuRequest request, string hostId)
+        public async Task<IActionResult> CreateMenuAsync(CreateMenuRequest request, Guid hostId)
         {
-            var result = await mediator.Send(mapper.Map<CreateMenuCommand>((request, hostId)));
+            var result = await mediator.Send(mapper.Map<CreateMenuCommand>((request, hostId.ToString())));
 
             return result.Match(
-                result => Ok(result),
+                result => Ok(mapper.Map<MenuResponse>(result)),
                 errors => Problem(errors));
         }
     }

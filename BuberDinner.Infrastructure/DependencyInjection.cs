@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Interfaces;
+using BuberDinner.Application.Interfaces.Persistence;
 using BuberDinner.Infrastructure.Authentication;
 using BuberDinner.Infrastructure.Persistence;
 using BuberDinner.Infrastructure.Services;
@@ -15,16 +16,23 @@ namespace BuberDinner.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, ConfigurationManager configuration)
         {
-            //services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
             services.AddAuth(configuration);
+            services.AddPersisttence();
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-            services.AddScoped<IUserRepository, UserRepository>();
-
+            
             return services;
+        }
+
+        private static void AddPersisttence(this IServiceCollection services)
+        {
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
         }
 
         private static IServiceCollection AddAuth(this IServiceCollection services, ConfigurationManager configuration)
         {
+            //services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
+
             var jwtSettings = new JwtSettings();
 
             configuration.Bind(JwtSettings.SectionName, jwtSettings);

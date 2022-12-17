@@ -16,18 +16,31 @@ namespace BuberDinner.Domain.Menu
 
         public DateTimeOffset UpdatedDateTime { get; private set; }
 
-        private readonly IList<MenuSection> sections = new List<MenuSection>();
+        private readonly List<MenuSection> sections = new();
 
-        private MenuEntity(MenuId id, string name, string description) : base(id)
+        private MenuEntity(MenuId id, string hostId, string name, string description, IEnumerable<MenuSection> sections) : base(id)
         {
             Name = name;
             Description = description;
+            HostId = Guid.Parse(hostId);
             CreatedDateTime= DateTimeOffset.Now;
             UpdatedDateTime= DateTimeOffset.Now;
+            this.sections.AddRange(sections);
         }
 
         public IReadOnlyList<MenuSection> Sections => sections.AsReadOnly();
 
-        public static MenuEntity Create(string name, string description) => new(MenuId.CreateUnique(), name, description);
+        public static MenuEntity Create(
+            string hostId,
+            string name,
+            string description,
+            IEnumerable<MenuSection> sections
+            ) => new (
+                MenuId.CreateUnique(),
+                hostId,
+                name,
+                description,
+                sections
+            );
     }
 }

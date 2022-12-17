@@ -1,4 +1,5 @@
 ﻿using BuberDinner.Application.Interfaces;
+using BuberDinner.Application.Interfaces.Persistence;
 using BuberDinner.Domain.Entities;
 using BuberDinner.Domain.Errors;
 using ErrorOr;

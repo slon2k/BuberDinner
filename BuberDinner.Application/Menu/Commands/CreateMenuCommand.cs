@@ -1,4 +1,5 @@
-﻿using ErrorOr;
+﻿using BuberDinner.Domain.Menu;
+using ErrorOr;
 using MediatR;
 
 namespace BuberDinner.Application.Menu.Commands
@@ -8,7 +9,7 @@ namespace BuberDinner.Application.Menu.Commands
         string Name,
         string Description,
         List<CreateMenuSection> Sections
-        ) : IRequest<ErrorOr<MenuResult>>;
+        ) : IRequest<ErrorOr<MenuEntity>>;
 
     public record CreateMenuSection(
         string Name,

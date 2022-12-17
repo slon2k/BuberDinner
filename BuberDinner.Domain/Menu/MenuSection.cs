@@ -8,17 +8,19 @@ namespace BuberDinner.Domain.Menu
 
         public string Description { get; private set; }
 
-        private readonly IList<MenuItem> items = new List<MenuItem>(); 
+        private readonly List<MenuItem> items = new(); 
 
         public IReadOnlyList<MenuItem> Items => items.AsReadOnly();
         
-        private MenuSection(MenuSectionId id, string name, string description) : base(id)
+        private MenuSection(MenuSectionId id, string name, string description, IEnumerable<MenuItem> items) : base(id)
         {
             Name = name;
             Description = description;
+            this.items.AddRange(items);
         }
 
-        public static MenuSection Create(string name, string description) => new(MenuSectionId.CreateUnique(), name, description);
+        public static MenuSection Create(string name, string description, IEnumerable<MenuItem> items) => 
+            new(MenuSectionId.CreateUnique(), name, description, items);
 
         public void Add(MenuItem item)
         {

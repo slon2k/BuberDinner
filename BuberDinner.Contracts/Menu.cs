@@ -3,21 +3,22 @@
     public record CreateMenuRequest(
         string Name,
         string Description,
-        List<MenuSection> Sections
+        List<MenuSectionRequest> Sections
         );
 
-    public record MenuSection(
+    public record MenuSectionRequest(
         string Name,
         string Description,
-        List<MenuItem> Items
+        List<MenuItemRequest> Items
         );
 
-    public record MenuItem(
+    public record MenuItemRequest(
         string Name,
         string Description
         );
     
     public record MenuResponse(
+        string Id,
         string Name,
         string Description,
         string HostId,
@@ -28,12 +29,14 @@
         );
 
     public record MenuSectionResponse(
+        string Id,
         string Name,
         string Description,
         List<MenuItemResponse> Items
         );
 
     public record MenuItemResponse(
+        string Id,
         string Name,
         string Description
         );
