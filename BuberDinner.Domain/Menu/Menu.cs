@@ -8,6 +8,14 @@ namespace BuberDinner.Domain.Menu
 
         public string Description { get; private set; }
 
+        public decimal AverageRating { get; set; }
+
+        public Guid HostId { get; set; }
+
+        public DateTimeOffset CreatedDateTime { get; set; }
+
+        public DateTimeOffset UpdatedDateTime { get; set; }
+
         private readonly IList<MenuSection> sections = new List<MenuSection>();
 
         private Menu(MenuId id, string name, string description) : base(id)
